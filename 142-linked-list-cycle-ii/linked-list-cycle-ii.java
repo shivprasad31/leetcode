@@ -11,17 +11,32 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        HashSet<ListNode> hs=new HashSet<>();
-        ListNode temp=head;
-
-        while(temp!=null){
-            if(hs.contains(temp)){
-                return temp;
-            }else{
-                hs.add(temp);
-            }
-            temp=temp.next;
+        if(head==null||head.next==null){
+            return null;
         }
-        return null;
+
+
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(fast==slow){
+                break;
+            }
+        }
+
+        //if there is no cycle present then the pointer will be null
+
+        if(fast==null||fast.next==null){
+            return null;
+        }
+        slow=head;
+        while(slow!=fast){
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return slow;
     }
 }
