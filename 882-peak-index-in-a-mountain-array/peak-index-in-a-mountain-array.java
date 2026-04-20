@@ -7,10 +7,7 @@ class Solution {
 
             if(arr[mid]>arr[mid+1]&&arr[mid]>arr[mid-1]){
                 return mid;
-            }
-
-
-            if(arr[mid]<arr[mid+1]){
+            }else if(arr[mid]<arr[mid+1]){
                 start=mid+1;
             }else{
                 end=mid-1;
